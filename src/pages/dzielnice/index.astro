@@ -1,0 +1,18 @@
+---
+import Kronika from "../../layouts/Kronika.astro";
+import site, { dzielnicaSlug } from "../../site.config";
+---
+<Kronika title="Dzielnice" description="Tematy Aktu Warszawskiego">
+  <main class="mx-auto max-w-4xl px-4 py-10">
+    <h1 class="font-display text-4xl font-bold">Dzielnice</h1>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {site.dzielnice.map((d, i) => (
+        <a href={`/dzielnice/${dzielnicaSlug(d.name)}/`} class="border-2 border-navy bg-chalk p-6 hover:bg-paper">
+          <p class="font-mono text-stamp">{String(i + 1).padStart(2, "0")}</p>
+          <h2 class="mt-1 font-display text-2xl font-bold">{d.name}</h2>
+          <p class="mt-2 text-sm text-slate">{d.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</Kronika>

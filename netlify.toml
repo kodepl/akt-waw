@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "https://akt.waw.pl/*"
+  to = "https://www.akt.waw.pl/:splat"
+  status = 301
+  force = true

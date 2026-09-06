@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stamp {
+  border: 2px solid #a31621;
+  color: #a31621;
+  transform: rotate(-3deg);
+  letter-spacing: 0.2em;
+}
+.ledger-rule {
+  border-bottom: 1px solid #c9c0ae;
+}

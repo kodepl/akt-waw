@@ -1,0 +1,18 @@
+---
+import Kronika from "../../layouts/Kronika.astro";
+import site from "../../site.config";
+---
+<Kronika title="Redakcja" description="Kim jesteśmy">
+  <main class="mx-auto max-w-3xl px-4 py-10">
+    <h1 class="font-display text-4xl font-bold">Redakcja</h1>
+    <div class="mt-8 flex flex-col gap-5 border-2 border-navy bg-chalk p-6 sm:flex-row">
+      <img src={site.authorAvatar} alt="" class="h-24 w-24 rounded-full border-2 border-navy object-cover" />
+      <div>
+        <p class="font-display text-2xl font-bold">{site.author}</p>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-stamp">{site.authorRole}</p>
+        <p class="mt-3 text-slate">{site.authorBio}</p>
+      </div>
+    </div>
+    <p class="mt-8 leading-relaxed text-slate">Akt Warszawski powstał z braku miejsca na teksty o mieście, które nie są ani komunikatem prasowym, ani felietonem o „klimacie stolicy”. Piszemy o uchwałach, ulicach i dzielnicach konkretnie.</p>
+  </main>
+</Kronika>
