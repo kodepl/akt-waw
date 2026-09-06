@@ -6,6 +6,7 @@ export default defineConfig({
   site: "https://www.akt.waw.pl",
   trailingSlash: "always",
   compressHTML: true,
+  build: { assets: "kronika" },
   markdown: { rehypePlugins: [rehypeSlug] },
   integrations: [tailwind()],
 });
