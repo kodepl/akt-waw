@@ -7,3 +7,15 @@
   to = "https://www.akt.waw.pl/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "https://akt-waw.netlify.app/*"
+  to = "https://www.akt.waw.pl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://main--akt-waw.netlify.app/*"
+  to = "https://www.akt.waw.pl/:splat"
+  status = 301
+  force = true
