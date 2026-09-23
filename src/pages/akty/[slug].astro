@@ -10,6 +10,12 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const cover = coverFor(post.data.dzielnica, post.data.image);
 const date = post.data.pubDate.toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
+const pile = (await getCollection("akty")).sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
+const here = pile.findIndex((p) => p.slug === post.slug);
+const newer = here > 0 ? pile[here - 1] : null;
+const older = here >= 0 && here < pile.length - 1 ? pile[here + 1] : null;
+const also = pile.filter((p) => p.slug !== post.slug).slice(0, 3);
+
 ---
 <Kronika title={post.data.title} description={post.data.description} image={cover}>
   <article class="mx-auto max-w-3xl px-4 py-10">
@@ -28,4 +34,16 @@ const date = post.data.pubDate.toLocaleDateString("pl-PL", { day: "numeric", mon
       <Content />
     </div>
   </article>
+
+<section class="mx-auto max-w-3xl px-4 pb-16">
+  <div class="mt-8 grid gap-3 sm:grid-cols-2">
+    {older && <a class="border-2 border-navy p-4" href={"/akty/" + older.slug + "/"}><p class="font-mono text-[10px] uppercase text-stamp">Starszy akt</p><p class="mt-2 font-display text-2xl font-bold">{older.data.title}</p></a>}
+    {newer && <a class="border-2 border-navy p-4" href={"/akty/" + newer.slug + "/"}><p class="font-mono text-[10px] uppercase text-stamp">Nowszy akt</p><p class="mt-2 font-display text-2xl font-bold">{newer.data.title}</p></a>}
+  </div>
+  {also.length > 0 && (
+    <ol class="mt-8 space-y-2 font-mono text-sm">
+      {also.map((item, i) => <li><a class="hover:text-stamp" href={"/akty/" + item.slug + "/"}>{String(i + 1).padStart(2, "0")} — {item.data.title}</a></li>)}
+    </ol>
+  )}
+</section>
 </Kronika>
