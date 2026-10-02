@@ -43,7 +43,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           <a href="/dzielnice/" class="border border-navy/20 px-3 py-1.5 hover:bg-navy hover:text-paper">Dzielnice</a>
           <a href="/redakcja/" class="border border-navy/20 px-3 py-1.5 hover:bg-navy hover:text-paper">Redakcja</a>
           <a href="/kontakt/" class="border border-navy/20 px-3 py-1.5 hover:bg-navy hover:text-paper">Kontakt</a>
-        </nav>
+        <a href="/teczka/">Szukaj</a>
+          </nav>
       </div>
     </header>
     <slot />
@@ -69,5 +70,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       </div>
     </footer>
       <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"99e4db3f609a4d8aa7539278a86fcf64"}'></script>
+  <div id="pasek-akt-waw" style="position:fixed;top:0;left:0;height:3px;width:0;background:#9f1239;z-index:40;pointer-events:none"></div>
+    <script>
+      const pasek = document.getElementById("pasek-akt-waw");
+      addEventListener("scroll", () => {
+        const node = document.documentElement;
+        const max = node.scrollHeight - node.clientHeight;
+        pasek.style.width = (max > 0 ? (node.scrollTop / max) * 100 : 0) + "%";
+      }, { passive: true });
+    </script>
   </body>
 </html>
